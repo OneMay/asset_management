@@ -3,7 +3,7 @@ var config = {
     user: 'root',
     port: 3306,
     password: 'admin',
-    database: 'educ'
+    database: 'Asset'
 }
 
 module.exports = config;

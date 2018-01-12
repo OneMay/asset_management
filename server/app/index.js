@@ -9,6 +9,31 @@ server.on('error', onError);
 server.on('listening', onListening);
 console.log('started on http://localhost:' + port);
 
+// var db = require('../mysql/connect');
+// var client = db.connectServer();
+
+// var count;
+// db.employeeNo_search(client, function(result) {
+//     count = result.length;
+//     console.log(result[0]);
+//     var data = {
+//         name: '朱格建国',
+//         sex: '男',
+//         address: '中南民族大学',
+//         workTelExt: '15928221807',
+//         homeTelNo: '15928221807',
+//         emplEmailAddress: '1102304904@qq.com',
+//         sociaSecurityNumber: '1102304904',
+//         DOB: '1997-03-23',
+//         position: '技术总监',
+//         salary: '100000',
+//         dateStarted: '2018-01-11',
+//         employeeNo: '2018' + (count + 1)
+//     }
+//     db.employee_add(client, data, function(result) {
+
+//     })
+// })
 
 //对port进行一些处理，使之能用
 function normalizePort(val) {
