@@ -24,11 +24,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 //配置用户验证
 app.use(session({
-        secret: 'secret',
-        resave: false,
-        cookie: { maxAge: 60 * 1000 * 30 } //设置过期时间
-    }))
-    //cookie
+    secret: 'fehey',
+    cookie: { maxAge: 60 * 60 * 1000 },
+    resave: false,
+    saveUninitialized: true,
+    name: 'fehey' // 若不设置 默认为 connect.sid ,name可换成key
+}));
+//cookie
 app.use(function(req, res, next) {
     res.setHeader('cache-control', 'no-cache');
     res.cookies = new cookies(req, res);

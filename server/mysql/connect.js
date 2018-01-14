@@ -75,7 +75,8 @@ module.exports = {
     //查询所以员工编号
     employeeNo_search(client, callback) {
         var sql = `select *
-                from AM_EMPLOYEE`;
+                from AM_EMPLOYEE
+                order by employeeNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
@@ -141,7 +142,8 @@ module.exports = {
     //查询所有资产类别编号
     assetCategory_search_all(client, callback) {
         var sql = `select *
-                  from AM_ASSETCATEGORY`;
+                  from AM_ASSETCATEGORY
+                  order by assetCategoryNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
@@ -185,7 +187,8 @@ module.exports = {
     //查询所有资产状况编号
     status_search_all(client, callback) {
         var sql = `select *
-                  from AM_STATUS`;
+                  from AM_STATUS
+                  order by statuNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
@@ -203,7 +206,8 @@ module.exports = {
     //查询所有资产信息
     asset_search_all(client, callback) {
         var sql = `select *
-                  from AM_ASSET`;
+                  from AM_ASSET
+                  order by assetNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
@@ -233,8 +237,8 @@ module.exports = {
     assetDescription_search(client, data, callback) {
         var sql = `select *
                   from AM_ASSET
-                  where assetDescription like %?%`;
-        client.query(sql, [data], (err, result) => {
+                  where assetDescription like ?`;
+        client.query(sql, ['%' + data + '%'], (err, result) => {
             if (err) throw err
             callback(result);
         })
@@ -298,7 +302,8 @@ module.exports = {
     //资产业务代理全部查询
     agent_search_all(client, callback) {
         var sql = `select *
-                 from AM_SERVICEAGENT`;
+                 from AM_SERVICEAGENT
+                 order by agentNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
@@ -378,7 +383,8 @@ module.exports = {
     //查询所有资产维护信息
     maintenance_search_all(client, callback) {
         var sql = `select *
-                 from AM_MAINTENANCE`;
+                 from AM_MAINTENANCE
+                 order by maintenanceNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
@@ -454,7 +460,8 @@ module.exports = {
     //查询所有评估
     valuation_search_all(client, callback) {
         var sql = `select *
-                 from AM_VALUATION`;
+                 from AM_VALUATION
+                 order by valuationNo desc`;
         client.query(sql, (err, result) => {
             if (err) throw err
             callback(result);
