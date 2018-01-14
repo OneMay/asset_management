@@ -283,7 +283,7 @@ router.post('/employee/update', function(req, res, next) {
     //按员工编号删除
 router.delete('/employee/delete', function(req, res, next) {
     var employeeNo = req.body.employeeNo;
-    if (employeeNo) {
+    if (employeeNo && employeeNo != '20181') {
         var client = db.connectServer();
         db.employee_search(client, employeeNo, function(result) {
             if (result[0]) {
@@ -301,7 +301,7 @@ router.delete('/employee/delete', function(req, res, next) {
 
     } else {
         responseData.code = 404;
-        responseData.message = '请输入员工编号';
+        responseData.message = '请输入员工编号或者您不能删除自己的信息';
         return res.json(responseData);
     }
 })
