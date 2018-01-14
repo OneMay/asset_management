@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/static/css/page/reset.css">
-    <link rel="stylesheet" href="/static/css/page/style.css">
-    <script src="/static/js/jquery-3.1.1.min.js"></script>
-    <script src="/static/js/all.js"></script>
-    <script src="/static/js/Employee.js"></script>
-    <title>员工信息</title>
-</head>
-
-<body>
-    <div class="nav">
-        <ul>
-            <li>
-                <a href="Assetmsg.html">资产信息</a>
-            </li>
-            <li>
-                <a href="Employee.html">员工信息</a>
-            </li>
-            <li>
-                <a href="ServiceAgent.html">业务代理</a>
-            </li>
-            <li>
-                <a href="status.html">资产状态</a>
-            </li>
-            <li>
-                <a href="maintenance.html">资产维护</a>
-            </li>
-            <li>
-                <a href="valuation.html">资产评估</a>
-            </li>
-            <li>
-                <a href="Category.html">资产分类</a>
-            </li>
-            <li>
-                <a href="">退出</a>
-            </li>
-        </ul>
-    </div>
+<%include  header.ejs %>
     <div id="box">
         <ul>
             <li>添加员工</li>
@@ -187,6 +144,5 @@
             <table></table>
         </div>
     </div>
-</body>
-
-</html>
+    <script src="/static/js/Employee.js"></script>
+    <%include  footer.ejs %>

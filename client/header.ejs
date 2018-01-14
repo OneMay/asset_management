@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/page/reset.css">
+    <link rel="stylesheet" href="/static/css/page/style.css">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/all.js"></script>
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+
+    <div class="nav">
+        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;">
+            <span id="EmployeeNO"><%= employeeNo %></span>
+            <span id="name"><%= userName %></span>
+            <span id="code"><%= code %></span>
+        </div>
+        <ul>
+            <% if (code> 50) { %>
+                <li>
+                    <a href="Assetmsg">资产信息</a>
+                </li>
+                <li>
+                    <a href="Employee">员工信息</a>
+                </li>
+                <li>
+                    <a href="ServiceAgent">业务代理</a>
+                </li>
+                <li>
+                    <a href="status">资产状态</a>
+                </li>
+                <li>
+                    <a href="maintenance">资产维护</a>
+                </li>
+                <li>
+                    <a href="valuation">资产评估</a>
+                </li>
+                <li>
+                    <a href="Category">资产分类</a>
+                </li>
+                <% } else { %>
+
+                    <h3 class="am-icon-users 5"><em></em> <a href="#">个人信息</a></h3>
+                    <ul id="5">
+                        <li><a href="/user/listOne">个人信息</a></li>
+                        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'><a href="/user/pay">工资发放历史</a></a>
+                    </ul>
+
+                    <% } %>
+
+                        <li>
+                            <a href="">退出</a>
+                        </li>
+        </ul>
+    </div>

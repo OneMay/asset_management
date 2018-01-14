@@ -13,8 +13,8 @@ var app = express();
 //var index = require('./routes/index.js');
 
 app.set('views', path.join(path.resolve(__dirname, '..'), 'client'))
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 app.use(express.static(path.join(path.resolve(__dirname, '..'), 'client')));
 app.use(logger('dev'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -61,7 +61,80 @@ function name(req, res) {
     }
 }
 app.get("/", function(req, res) {
-    res.render("index");
+    console.log(req.session.user)
+    if (req.session.user && req.session.user.code) {
+        res.redirect('/Assetmsg');
+    }
+    res.render("login", {
+        title: '欢迎进入资产管理系统',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/Assetmsg", function(req, res) {
+    name(req, res)
+    res.render("Assetmsg", {
+        title: '资产信息',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+
+app.get("/Employee", function(req, res) {
+    name(req, res)
+    res.render("Employee", {
+        title: '员工信息',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/ServiceAgent", function(req, res) {
+    name(req, res)
+    res.render("ServiceAgent", {
+        title: '资产管理业务代理',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/status", function(req, res) {
+    name(req, res)
+    res.render("status", {
+        title: '资产状态',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/maintenance", function(req, res) {
+    name(req, res)
+    res.render("maintenance", {
+        title: '资产维护',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/valuation", function(req, res) {
+    name(req, res)
+    res.render("valuation", {
+        title: '资产评估',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/Category", function(req, res) {
+    name(req, res)
+    res.render("Category", {
+        title: '分类管理',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
 });
 app.use('/api', api);
 app.use('/admin', admin);
