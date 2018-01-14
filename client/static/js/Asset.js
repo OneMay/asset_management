@@ -225,4 +225,106 @@ $(function() {
             }
         })
     })
+
+    $("#lookupName").click(function() {
+        var assetDescription = $(".lookupName").val();
+        $.ajax({
+            url: '/admin/asset/assetDescription_search',
+            type: 'post',
+            datatype: 'json',
+            data: {
+                assetDescription: assetDescription,
+            },
+            success: function(asset) {
+                if (asset.code == 200) {
+                    var thead = "<thead><tr>" +
+                        "<td> 资产编号 </td>" +
+                        "<td>资产描述</td>" +
+                        "<td>序列号</td>" +
+                        "<td>采购日期 </td>" +
+                        "<td>采购价格</td>" +
+                        "<td>现在市值</td>" +
+                        "<td>售出日期</td>" +
+                        "<td>下次维护日期</td>" +
+                        "<td>员工编号</td>" +
+                        "<td>类别编号</td>" +
+                        "<td>状态编号</td>" +
+                        "</tr></thead>"
+                    $('.lookup').find('table').append(thead)
+                    for (var i = 0; i < asset.asset.length; i++) {
+                        var tr = "<tr>" +
+                            "<td title=" + asset.asset[i].assetNo + ">" + asset.asset[i].assetNo + "</td>" +
+                            "<td title=" + asset.asset[i].assetDescription + ">" + asset.asset[i].assetDescription + "</td>" +
+                            "<td title=" + asset.asset[i].serialNo + ">" + asset.asset[i].serialNo + "</td>" +
+                            "<td title=" + asset.asset[i].dateAcquired.substring(0, 10) + ">" + asset.asset[i].dateAcquired.substring(0, 10) + "</td>" +
+                            "<td title=" + asset.asset[i].purchasePrice + ">" + asset.asset[i].purchasePrice + "</td>" +
+                            "<td title=" + asset.asset[i].currentValue + ">" + asset.asset[i].currentValue + "</td>" +
+                            "<td title=" + asset.asset[i].dateSold.substring(0, 10) + ">" + asset.asset[i].dateSold.substring(0, 10) + "</td>" +
+                            "<td title=" + asset.asset[i].nextMaintenanceDate.substring(0, 10) + ">" + asset.asset[i].nextMaintenanceDate.substring(0, 10) + "</td>" +
+                            "<td title=" + asset.asset[i].employeeNo + ">" + asset.asset[i].employeeNo + "</td>" +
+                            "<td title=" + asset.asset[i].assetCategoryNo + ">" + asset.asset[i].assetCategoryNo + "</td>" +
+                            "<td title=" + asset.asset[i].statuNo + ">" + asset.asset[i].statuNo + "</td>" +
+                            "</tr>"
+                        $('.lookup').find('table').append(tr)
+                    }
+                } else {
+                    $('.lookup').find('table').append()
+                }
+            },
+            error: function() {
+                alert("no")
+            }
+        })
+    })
+    $("#lookupAll").click(function() {
+        $.ajax({
+            url: '/admin/asset/searchAll',
+            type: 'post',
+            datatype: 'json',
+            data: {},
+            success: function(asset) {
+                if (asset.code == 200) {
+                    var thead = "<thead><tr>" +
+                        "<td> 资产编号 </td>" +
+                        "<td>资产描述</td>" +
+                        "<td>序列号</td>" +
+                        "<td>采购日期 </td>" +
+                        "<td>采购价格</td>" +
+                        "<td>现在市值</td>" +
+                        "<td>售出日期</td>" +
+                        "<td>下次维护日期</td>" +
+                        "<td>员工编号</td>" +
+                        "<td>类别编号</td>" +
+                        "<td>状态编号</td>" +
+                        "</tr></thead>"
+                    $('.lookup').find('table').append(thead)
+                    for (var i = 0; i < asset.asset.length; i++) {
+                        var tr = "<tr>" +
+                            "<td title=" + asset.asset[i].assetNo + ">" + asset.asset[i].assetNo + "</td>" +
+                            "<td title=" + asset.asset[i].assetDescription + ">" + asset.asset[i].assetDescription + "</td>" +
+                            "<td title=" + asset.asset[i].serialNo + ">" + asset.asset[i].serialNo + "</td>" +
+                            "<td title=" + asset.asset[i].dateAcquired.substring(0, 10) + ">" + asset.asset[i].dateAcquired.substring(0, 10) + "</td>" +
+                            "<td title=" + asset.asset[i].purchasePrice + ">" + asset.asset[i].purchasePrice + "</td>" +
+                            "<td title=" + asset.asset[i].currentValue + ">" + asset.asset[i].currentValue + "</td>" +
+                            "<td title=" + asset.asset[i].dateSold.substring(0, 10) + ">" + asset.asset[i].dateSold.substring(0, 10) + "</td>" +
+                            "<td title=" + asset.asset[i].nextMaintenanceDate.substring(0, 10) + ">" + asset.asset[i].nextMaintenanceDate.substring(0, 10) + "</td>" +
+                            "<td title=" + asset.asset[i].employeeNo + ">" + asset.asset[i].employeeNo + "</td>" +
+                            "<td title=" + asset.asset[i].assetCategoryNo + ">" + asset.asset[i].assetCategoryNo + "</td>" +
+                            "<td title=" + asset.asset[i].statuNo + ">" + asset.asset[i].statuNo + "</td>" +
+                            "</tr>"
+                        $('.lookup').find('table').append(tr)
+                    }
+                } else {
+                    $('.lookup').find('table').append()
+                }
+            },
+            error: function() {
+                alert("no")
+            }
+        })
+    })
+
+    $("#lookupAll").click(function() {
+        $(this).attr("disabled", "disabled");
+    });
 })

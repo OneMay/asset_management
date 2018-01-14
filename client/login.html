@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>资产管理登录</title>
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="/static/css/page/reset.css">
+    <link rel="stylesheet" href="/static/css/page/style.css">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/login.js"></script>
 </head>
 
 <body>
     <div>
         <p>
             <label for="username">账户:</label>
-            <input type="text">
+            <input type="text" class="employeeNo">
         </p>
         <p>
             <label for="password">密码:</label>
-            <input type="password">
+            <input type="password" class="password">
         </p>
         <p>
             <span>
@@ -30,7 +32,7 @@
                 <label for="">普通用户</label>
             </span>
         </p>
-        <button>登录</button>
+        <button id="login">登录</button>
     </div>
 
 </body>

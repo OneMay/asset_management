@@ -197,7 +197,7 @@ $(function() {
             },
             success: function(userInfo) {
                 if (userInfo.code == 200) {
-                    var tr = "<thead><tr>" +
+                    var thead = "<thead><tr>" +
                         "<td>员工编号 </td>" +
                         "<td>员工姓名</td>" +
                         "<td>员工性别</td>" +
@@ -210,22 +210,25 @@ $(function() {
                         "<td>员工职位</td>" +
                         "<td>员工工资</td>" +
                         "<td>入职日期</td>" +
-                        "</tr></thead>" +
-                        "<tr>" +
-                        "<td title=" + userInfo.userInfo.employeeNo + ">" + userInfo.userInfo.employeeNo + "</td>" +
-                        "<td title=" + userInfo.userInfo.name + ">" + userInfo.userInfo.name + "</td>" +
-                        "<td title=" + userInfo.userInfo.sex + ">" + userInfo.userInfo.sex + "</td>" +
-                        "<td title=" + userInfo.userInfo.address + ">" + userInfo.userInfo.address + "</td>" +
-                        "<td title=" + userInfo.userInfo.workTelExt + ">" + userInfo.userInfo.workTelExt + "</td>" +
-                        "<td title=" + userInfo.userInfo.homeTelNo + ">" + userInfo.userInfo.homeTelNo + "</td>" +
-                        "<td title=" + userInfo.userInfo.emplEmailAddress + ">" + userInfo.userInfo.emplEmailAddress + "</td>" +
-                        "<td title=" + userInfo.userInfo.sociaSecurityNumber + ">" + userInfo.userInfo.sociaSecurityNumber + "</td>" +
-                        "<td title=" + userInfo.userInfo.DOB.substring(0, 10) + ">" + userInfo.userInfo.DOB.substring(0, 10) + "</td>" +
-                        "<td title=" + userInfo.userInfo.position + ">" + userInfo.userInfo.position + "</td>" +
-                        "<td title=" + userInfo.userInfo.salary + ">" + userInfo.userInfo.salary + "</td>" +
-                        "<td title=" + userInfo.userInfo.dateStarted.substring(0, 10) + ">" + userInfo.userInfo.dateStarted.substring(0, 10) + "</td>" +
-                        "</tr>"
-                    $('.lookup').find('table').append(tr)
+                        "</tr></thead>"
+                    $('.lookup').find('table').append(thead)
+                    for (var i = 0; i < userInfo.userInfo.length; i++) {
+                        var tr = "<tr>" +
+                            "<td title=" + userInfo.userInfo[i].employeeNo + ">" + userInfo.userInfo[i].employeeNo + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].name + ">" + userInfo.userInfo[i].name + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].sex + ">" + userInfo.userInfo[i].sex + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].address + ">" + userInfo.userInfo[i].address + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].workTelExt + ">" + userInfo.userInfo[i].workTelExt + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].homeTelNo + ">" + userInfo.userInfo[i].homeTelNo + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].emplEmailAddress + ">" + userInfo.userInfo[i].emplEmailAddress + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].sociaSecurityNumber + ">" + userInfo.userInfo[i].sociaSecurityNumber + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].DOB.substring(0, 10) + ">" + userInfo.userInfo[i].DOB.substring(0, 10) + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].position + ">" + userInfo.userInfo[i].position + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].salary + ">" + userInfo.userInfo[i].salary + "</td>" +
+                            "<td title=" + userInfo.userInfo[i].dateStarted.substring(0, 10) + ">" + userInfo.userInfo[i].dateStarted.substring(0, 10) + "</td>" +
+                            "</tr>"
+                        $('.lookup').find('table').append(tr)
+                    }
                 } else {
                     $('.lookup').find('table').append()
                 }
@@ -235,4 +238,53 @@ $(function() {
             }
         })
     })
+
+    $("#lookupAll").click(function() {
+        $.ajax({
+            url: '/admin/employee/search',
+            type: 'post',
+            dataType: 'json',
+            data: {},
+            success: function(userInfo) {
+                var thead = "<thead><tr>" +
+                    "<td>员工编号 </td>" +
+                    "<td>员工姓名</td>" +
+                    "<td>员工性别</td>" +
+                    "<td>员工地址 </td>" +
+                    "<td>工作电话</td>" +
+                    "<td>家庭电话</td>" +
+                    "<td>邮箱地址</td>" +
+                    "<td>社会号码</td>" +
+                    "<td>出生日期</td>" +
+                    "<td>员工职位</td>" +
+                    "<td>员工工资</td>" +
+                    "<td>入职日期</td>" +
+                    "</tr></thead>"
+                $('.lookup').find('table').append(thead)
+                for (var i = 0; i < userInfo.userInfo.length; i++) {
+                    var tr = "<tr>" +
+                        "<td title=" + userInfo.userInfo[i].employeeNo + ">" + userInfo.userInfo[i].employeeNo + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].name + ">" + userInfo.userInfo[i].name + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].sex + ">" + userInfo.userInfo[i].sex + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].address + ">" + userInfo.userInfo[i].address + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].workTelExt + ">" + userInfo.userInfo[i].workTelExt + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].homeTelNo + ">" + userInfo.userInfo[i].homeTelNo + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].emplEmailAddress + ">" + userInfo.userInfo[i].emplEmailAddress + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].sociaSecurityNumber + ">" + userInfo.userInfo[i].sociaSecurityNumber + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].DOB.substring(0, 10) + ">" + userInfo.userInfo[i].DOB.substring(0, 10) + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].position + ">" + userInfo.userInfo[i].position + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].salary + ">" + userInfo.userInfo[i].salary + "</td>" +
+                        "<td title=" + userInfo.userInfo[i].dateStarted.substring(0, 10) + ">" + userInfo.userInfo[i].dateStarted.substring(0, 10) + "</td>" +
+                        "</tr>"
+                    $('.lookup').find('table').append(tr)
+                }
+            },
+            error: function() {
+
+            }
+        })
+    })
+    $("#lookupAll").click(function() {
+        $(this).attr("disabled", "disabled");
+    });
 })

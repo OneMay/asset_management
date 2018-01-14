@@ -146,7 +146,7 @@ $(function() {
         })
     })
 
-    $("#lookup").click(function() {
+    $("#lookupNo").click(function() {
         var agentNo = $(".lookupNo").val();
         $.ajax({
             url: '/admin/agent/agentNo_search',
@@ -188,6 +188,58 @@ $(function() {
                         "<td title=" + agent.agent.contactEmailAddress + ">" + agent.agent.contactEmailAddress + "</td>" +
                         "</tr>"
                     $('.lookup').find('table').append(tr)
+                } else {
+                    $('.lookup').find('table').append()
+                }
+            },
+            error: function() {
+                alert("no")
+            }
+        })
+    })
+
+    $("#lookupAll").click(function() {
+        $.ajax({
+            url: '/admin/agent/searchAll',
+            type: 'post',
+            datatype: 'json',
+            data: {},
+            success: function(agent) {
+                if (agent.code == 200) {
+                    var thead = "<thead><tr>" +
+                        "<td>代理商名 </td>" +
+                        "<td>街道</td>" +
+                        "<td>城市</td>" +
+                        "<td>县市</td>" +
+                        "<td>邮政编码</td>" +
+                        "<td>电话</td>" +
+                        "<td>传真</td>" +
+                        "<td>邮箱</td>" +
+                        "<td>网址</td>" +
+                        "<td>联系人</td>" +
+                        "<td>联系人电话</td>" +
+                        "<td>联系人传真</td>" +
+                        "<td>联系人邮箱</td>" +
+                        "</tr></thead>"
+                    $('.lookup').find('table').append(thead)
+                    for (var i = 0; i < agent.agent.length; i++) {
+                        var tr = "<tr>" +
+                            "<td title=" + agent.agent[i].agentName + ">" + agent.agent[i].agentName + "</td>" +
+                            "<td title=" + agent.agent[i].agentStreet + ">" + agent.agent[i].agentStreet + "</td>" +
+                            "<td title=" + agent.agent[i].agentCity + ">" + agent.agent[i].agentCity + "</td>" +
+                            "<td title=" + agent.agent[i].agentState + ">" + agent.agent[i].agentState + "</td>" +
+                            "<td title=" + agent.agent[i].agentZipCode + ">" + agent.agent[i].agentZipCode + "</td>" +
+                            "<td title=" + agent.agent[i].agentTelNo + ">" + agent.agent[i].agentTelNo + "</td>" +
+                            "<td title=" + agent.agent[i].agentFaxNo + ">" + agent.agent[i].agentFaxNo + "</td>" +
+                            "<td title=" + agent.agent[i].agentEmailAddress + ">" + agent.agent[i].agentEmailAddress + "</td>" +
+                            "<td title=" + agent.agent[i].agentWebAdderss + ">" + agent.agent[i].agentWebAdderss + "</td>" +
+                            "<td title=" + agent.agent[i].contactName + ">" + agent.agent[i].contactName + "</td>" +
+                            "<td title=" + agent.agent[i].contactTelNo + ">" + agent.agent[i].contactTelNo + "</td>" +
+                            "<td title=" + agent.agent[i].contactFaxNo + ">" + agent.agent[i].contactFaxNo + "</td>" +
+                            "<td title=" + agent.agent[i].contactEmailAddress + ">" + agent.agent[i].contactEmailAddress + "</td>" +
+                            "</tr>"
+                        $('.lookup').find('table').append(tr)
+                    }
                 } else {
                     $('.lookup').find('table').append()
                 }

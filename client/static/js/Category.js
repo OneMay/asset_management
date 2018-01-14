@@ -53,4 +53,30 @@ $(function() {
             }
         })
     })
+    $('#lookupAll').click(function() {
+        $.ajax({
+            url: '/admin/assetCategory/searchAll',
+            type: 'post',
+            datatype: 'json',
+            data: {},
+            success: function(assetCategory) {
+                var thead = "<thead><tr>" +
+                    "<td>类别编号</td>" +
+                    "<td>类别描述</td>"
+                "</tr></thead>"
+                $('.lookup').find('table').append(thead);
+                for (var i = 0; i < assetCategory.assetCategory.length; i++) {
+                    var tr = "<tr><td>" + assetCategory.assetCategory[i].assetCategoryNo + "</td><td>" + assetCategory.assetCategory[i].assetCategoryDescription + "</td></tr>"
+                    $('.lookup').find('table').append(tr);
+                }
+            },
+            error: function() {
+                alert("no")
+            }
+        })
+    })
+
+    $("#lookupAll").click(function() {
+        $(this).attr("disabled", "disabled");
+    });
 })

@@ -233,8 +233,8 @@ module.exports = {
     assetDescription_search(client, data, callback) {
         var sql = `select *
                   from AM_ASSET
-                  where assetDescription like %?%`;
-        client.query(sql, [data], (err, result) => {
+                  where assetDescription like ?`;
+        client.query(sql, ['%' + data + '%'], (err, result) => {
             if (err) throw err
             callback(result);
         })

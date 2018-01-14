@@ -65,4 +65,38 @@ $(function() {
         })
     });
 
+    $('#lookupAll').click(function() {
+        $.ajax({
+            url: '/admin/status/searchAll',
+            type: 'post',
+            dataType: 'json',
+            data: {},
+            success: function(status) {
+                if (status.code == 200) {
+                    var thead = " <thead><tr>" +
+                        "<td>状态编号</td>" +
+                        "<td>状态描述</td>" +
+                        "</tr></thead>"
+                    $('.lookup').find('table').append(thead);
+                    for (var i = 0; i < status.status.length; i++) {
+                        var tr = "<tr>" +
+                            "<td title=" + status.status[i].statuNo + ">" + status.status[i].statuNo + "</td>" +
+                            "<td title=" + status.status[i].statusDescription + ">" + status.status[i].statusDescription +
+                            "</td></tr>"
+                        $('.lookup').find('table').append(tr);
+                    }
+                } else {
+                    alert("没有这个维护")
+                }
+            },
+            error: function() {
+                alert("no")
+            }
+        })
+    });
+
+
+    $("#lookupAll").click(function() {
+        $(this).attr("disabled", "disabled");
+    });
 })
