@@ -91,7 +91,7 @@ Date.prototype.Format = function(fmt) {
 //登陆
 router.post('/user/login', function(req, res, next) {
         var employeeNo = req.body.employeeNo;
-        var password = req.body.employeeNo;
+        var password = req.body.password;
         if (employeeNo && password) {
             var client = db.connectServer();
             var data = {

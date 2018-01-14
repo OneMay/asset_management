@@ -41,8 +41,7 @@ module.exports = {
     login(client, data, callback) {
         var sql = `select *
                 from AM_EMPLOYEE
-                where employeeNo = ? and password= ?
-            `
+                where employeeNo = ? and password= ?`;
         var params = [
             data.employeeNo,
             data.password
