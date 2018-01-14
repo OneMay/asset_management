@@ -232,7 +232,7 @@ router.post('/employee/update', function(req, res, next) {
     })
     //按员工编号删除
 router.delete('/employee/delete', function(req, res, next) {
-    var employeeNo = req.query.employeeNo;
+    var employeeNo = req.body.employeeNo;
     if (employeeNo) {
         var client = db.connectServer();
         db.employee_search(client, employeeNo, function(result) {
@@ -321,7 +321,7 @@ router.post('/assetCategory/searchAll', function(req, res, next) {
     })
     //按资产类别编号删除
 router.delete('/assetCategory/delete', function(req, res, next) {
-        var assetCategoryNo = req.query.assetCategoryNo;
+        var assetCategoryNo = req.body.assetCategoryNo;
         if (assetCategoryNo) {
             var client = db.connectServer();
             db.assetCategory_search(client, assetCategoryNo, function(result) {
@@ -408,7 +408,7 @@ router.post('/status/searchAll', function(req, res, next) {
     })
     //按资产状况编号删除
 router.delete('/status/delete', function(req, res, next) {
-    var statuNo = req.query.statuNo;
+    var statuNo = req.body.statuNo;;
     if (statuNo) {
         var client = db.connectServer();
         db.status_search(client, statuNo, function(result) {
@@ -577,8 +577,8 @@ router.post('/asset/update', function(req, res, next) {
         }
     })
     //按资产编号删除
-router.delete('/asset/dalete', function(req, res, next) {
-        var assetNo = req.query.assetNo;
+router.delete('/asset/delete', function(req, res, next) {
+        var assetNo = req.body.assetNo;
         if (assetNo) {
             var client = db.connectServer();
             db.assetNo_search(client, assetNo, function(result) {
@@ -734,7 +734,7 @@ router.post('/agent/update', function(req, res, next) {
     })
     //资产管理业务代理删除
 router.delete('/agent/delete', function(req, res, next) {
-    var agentNo = req.query.agentNo;
+    var agentNo = req.body.agentNo;
     if (agentNo) {
         var client = db.connectServer();
         db.agent_search(client, agentNo, function(result) {
@@ -777,7 +777,7 @@ router.post('/maintenance/add', function(req, res, next) {
                     assetNo: assetNo,
                     employeeNo: employeeNo,
                     agentNo: agentNo,
-                    maintenanceNo: 'nan18' + (count + 1);
+                    maintenanceNo: 'nan18' + (count + 1)
                 };
                 db.maintenance_add(client, data, function(result) {
                     responseData.code = 200;
@@ -848,7 +848,7 @@ router.post('/maintenance/update', function(req, res, next) {
     })
     //资产维护删除
 router.delete('/maintenance/delete', function(req, res, next) {
-    var maintenanceNo = req.query.maintenanceNo;
+    var maintenanceNo = req.body.maintenanceNo;
     if (maintenanceNo) {
         var client = db.connectServer();
         db.maintenance_search(client, maintenanceNo, function(result) {
@@ -961,7 +961,7 @@ router.post('/valuation/update', function(req, res, next) {
     })
     //评估删除
 router.delete('/valuation/delete', function(req, res, next) {
-    var valuationNo = req.query.valuationNo;
+    var valuationNo = req.body.valuationNo;
     if (valuationNo) {
         var client = db.connectServer();
         db.valuation_search_No(client, valuationNo, function(result) {

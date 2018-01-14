@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/page/reset.css">
+    <link rel="stylesheet" href="/static/css/page/style.css">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/all.js"></script>
+    <script src="/static/js/Asset.js"></script>
+    <title>资产信息</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="Assetmsg.html">资产信息</a>
+            </li>
+            <li>
+                <a href="Employee.html">员工信息</a>
+            </li>
+            <li>
+                <a href="ServiceAgent.html">业务代理</a>
+            </li>
+            <li>
+                <a href="status.html">资产状态</a>
+            </li>
+            <li>
+                <a href="maintenance.html">资产维护</a>
+            </li>
+            <li>
+                <a href="valuation.html">资产评估</a>
+            </li>
+            <li>
+                <a href="Category.html">资产分类</a>
+            </li>
+            <li>
+                <a href="">退出</a>
+            </li>
+        </ul>
+    </div>
+    <div id="box">
+        <ul>
+            <li>添加资产</li>
+            <li>删除资产</li>
+            <li>修改资产</li>
+            <li>查找资产</li>
+        </ul>
+        <div class="add show">
+            <h2>添加资产</h2>
+            <div>
+                <p>
+                    <label for="assetDescription">资产描述:</label>
+                    <input type="text" class="asset">
+                </p>
+                <p>
+                    <label for="serialNo">序列号:</label>
+                    <input type="text" class="asset">
+                </p>
+                <p>
+                    <label for=" dateAcquired">采购日期:</label>
+                    <input type="date" class="asset">
+                </p>
+                <p>
+                    <label for="purchasePrice">采购价格:</label>
+                    <input type="text" class="asset">
+                </p>
+                <p>
+                    <label for="currentValue">现在市值:</label>
+                    <input type="text" class="asset">
+                </p>
+                <p>
+                    <label for="dateSold">销售日期:</label>
+                    <input type="date" class="asset">
+                </p>
+                <p>
+                    <label for="nextMaintenanceDate">下次保养日期:</label>
+                    <input type="date" class="asset">
+                </p>
+                <p>
+                    <label for="employeeNo">使用员工号:</label>
+                    <select class="asset employeeNo">  
+                        </select>
+                </p>
+                <p>
+                    <label for="assetCategoryNo">资产类别:</label>
+                    <select class="asset assetCategoryNo">  
+                    </select>
+                </p>
+                <p>
+                    <label for="statuNo">当前状态:</label>
+                    <select class="asset statuNo">  
+                    </select>
+                </p>
+                <p>
+                    <button id="add">确认添加</button>
+                </p>
+            </div>
+        </div>
+        <div class="delete show">
+            <h2>删除资产</h2>
+            <p>
+                <span>请输入你要删除的资产的编号</span>
+                <input type="text" class="deleteNo">
+            </p>
+            <button id="delete">确认删除</button>
+        </div>
+        <div class="modify show">
+            <h2>修改资产信息</h2>
+            <p>
+                <span>请输入你要修改的资产的编号</span>
+                <input type="text" class="modifyNo">
+            </p>
+            <p><button class="sure">确认</button></p>
+            <div class="assetBox" style="display:none">
+                <p>
+                    <label for="descrip">资产描述:</label>
+                    <input type="text" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="serialNo">序列号:</label>
+                    <input type="text" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="acqDate">采购日期:</label>
+                    <input type="date" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="purPrice">采购价格:</label>
+                    <input type="text" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="nowPrice">现在市值:</label>
+                    <input type="text" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="dateSold">销售日期:</label>
+                    <input type="date" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="nextmantDate">下次保养日期:</label>
+                    <input type="date" class="modifyAsset">
+                </p>
+                <p>
+                    <label for="userId">使用员工号:</label>
+                    <select class="modifyAsset employeeNo">  
+                        </select>
+                </p>
+                <p>
+                    <label for="category">资产类别:</label>
+                    <select class="modifyAsset assetCategoryNo">  
+                    </select>
+                </p>
+                <p>
+                    <label for="statu">当前状态:</label>
+                    <select class="modifyAsset statuNo">  
+                    </select>
+                </p>
+                <p>
+                    <button id="modify">确认修改</button>
+                </p>
+            </div>
+        </div>
+        <div class="lookup show">
+            <h2>查询资产信息</h2>
+            <p>
+                <span>编号查询</span>
+                <input type="text" class="lookupNo">
+            </p>
+            <p><button id="lookupNo">确认查找</button></p>
+            <table></table>
+            <p>
+                <span>条件查询</span>
+                <input type="text">
+            </p>
+            <p><button>确认查找</button></p>
+        </div>
+    </div>
+</body>
+
+</html>

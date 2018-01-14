@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/page/reset.css">
+    <link rel="stylesheet" href="/static/css/page/style.css">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/all.js"></script>
+    <script src="/static/js/ServiceAgent.js"></script>
+    <title>资产管理业务代理</title>
+</head>
+
+<body>
+    <div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="Assetmsg.html">资产信息</a>
+                </li>
+                <li>
+                    <a href="Employee.html">员工信息</a>
+                </li>
+                <li>
+                    <a href="ServiceAgent.html">业务代理</a>
+                </li>
+                <li>
+                    <a href="status.html">资产状态</a>
+                </li>
+                <li>
+                    <a href="maintenance.html">资产维护</a>
+                </li>
+                <li>
+                    <a href="valuation.html">资产评估</a>
+                </li>
+                <li>
+                    <a href="Category.html">资产分类</a>
+                </li>
+                <li>
+                    <a href="">退出</a>
+                </li>
+            </ul>
+        </div>
+        <div id="box">
+            <ul>
+                <li>添加代理</li>
+                <li>修改代理</li>
+                <li>删除代理</li>
+                <li>查找代理</li>
+            </ul>
+
+            <div class="add show">
+                <h2>添加代理</h2>
+                <div>
+                    <p>
+                        <label for="agentName">代理名:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="agentStreet">街道:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="city">城市:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="state">所属县市:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="Zipcode">邮政编码:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="tel">电话号码:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="Fax">传真号码:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="emil">电子信箱:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="webAddress">网站地址:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="contactName">联系人:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="contactTel">联系人电话:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="contactFax">联系人传真:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <label for="contactEmil">联系人邮箱:</label>
+                        <input type="text" class="agent">
+                    </p>
+                    <p>
+                        <button id="add">确认添加</button>
+                    </p>
+                </div>
+            </div>
+            <div class="modify show">
+                <h2>修改代理</h2>
+                <p>
+                    <span>请输入要修改的代理编号</span>
+                    <input type="text" class="agentNo">
+                </p>
+                <p><button class="sure">确认</button></p>
+                <div style="display:none" class="agentBox">
+                    <p>
+                        <label for="agentName">代理名:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="agentStreet">街道:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="city">城市:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="state">所属县市:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="Zipcode">邮政编码:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="tel">电话号码:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="Fax">传真号码:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="emil">电子信箱:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="webAddress">网站地址:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="contactName">联系人:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="contactTel">联系人电话:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="contactFax">联系人传真:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <label for="contactEmil">联系人邮箱:</label>
+                        <input type="text" class="modifyAgent">
+                    </p>
+                    <p>
+                        <button id="modify">确认修改</button>
+                    </p>
+                </div>
+            </div>
+            <div class="delete show">
+                <h2>删除代理</h2>
+                <p>
+                    <span>请输入要删除的代理的编号</span>
+                    <input type="text" class="deleteNo">
+                </p>
+                <p><button id="delete">确认删除</button></p>
+            </div>
+            <div class="lookup show">
+                <h2>查找代理</h2>
+                <p>
+                    <span>请输入要查找的代理的编号</span>
+                    <input type="text" class="lookupNo">
+                </p>
+                <p><button id="lookup">确认查找</button></p>
+                <table></table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

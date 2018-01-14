@@ -66,8 +66,8 @@ module.exports = {
     employeeName_search(client, data, callback) {
         var sql = `select *
                   from AM_EMPLOYEE
-                  where name like %?%`;
-        client.query(sql, [data], (err, result) => {
+                  where name like ?`;
+        client.query(sql, ['%' + data + '%'], (err, result) => {
             if (err) throw err
             callback(result);
         })
@@ -201,7 +201,7 @@ module.exports = {
         })
     },
     //查询所有资产信息
-    asset_search_all(client, data, callback) {
+    asset_search_all(client, callback) {
         var sql = `select *
                   from AM_ASSET`;
         client.query(sql, (err, result) => {
