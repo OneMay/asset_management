@@ -2,7 +2,6 @@ $(function() {
     $('#login').click(function() {
         var employeeNo = $(".employeeNo").val();
         var password = $(".password").val();
-        alert(employeeNo)
         $.ajax({
             url: '/api/user/login',
             type: 'post',
@@ -11,8 +10,12 @@ $(function() {
                 employeeNo: employeeNo,
                 password: password
             },
-            success: function() {
-                alert("yes")
+            success: function(data) {
+                if (data.code == 200) {
+                    window.location.href = '/Assetmsg';
+                } else {
+                    alert(data.message);
+                }
             },
             error: function() {
                 alert("shib")
