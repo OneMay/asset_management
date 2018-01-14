@@ -52,6 +52,20 @@ module.exports = {
             callback(result);
         })
     },
+    //密码修改
+    employee_pw_update(client, data, callback) {
+        var sql = `update AM_EMPLOYEE
+                set password = ?
+                where employeeNo = ?`;
+        var params = [
+            data.password,
+            data.employeeNo
+        ];
+        client.query(sql, params, function(err, result) {
+            if (err) throw err
+            callback(result);
+        })
+    }
     //按员工编号查询
     employee_search(client, data, callback) {
         var sql = `select *

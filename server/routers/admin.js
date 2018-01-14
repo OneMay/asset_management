@@ -169,6 +169,36 @@ router.post('/employee/employeeNo_search', function(req, res, next) {
             return res.json(responseData);
         }
     })
+    //按修改密码
+router.post('/employee/password', function(req, res, next) {
+        var employeeNo = req.body.employeeNo;
+        var password = req.body.password;
+        if (employeeNo && password) {
+            var client = db.connectServer();
+            db.employee_search(client, employeeNo, function(result) {
+                if (result[0]) {
+                    var data = {
+                        password: password,
+                        employeeNo: employeeNo
+                    };
+                    db.employee_pw_update(client, data, function(result) {
+                        responseData.code = 200;
+                        responseData.message = '修改成功';
+                        return res.json(responseData);
+                    })
+                } else {
+                    responseData.userInfo = {};
+                    responseData.code = 404;
+                    responseData.message = '无此员工信息记录';
+                    return res.json(responseData);
+                }
+            })
+        } else {
+            responseData.code = 404;
+            responseData.message = '请输入员工编号';
+            return res.json(responseData);
+        }
+    })
     //按员工姓名模糊查询
 router.post('/employee/name_search', function(req, res, next) {
         var name = req.body.name;
