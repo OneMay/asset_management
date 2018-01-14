@@ -98,19 +98,39 @@ router.post('/employee/add', function(req, res, next) {
             var client = db.connectServer();
             db.employeeNo_search(client, function(result) {
                 count = result.length;
-                var data = {
-                    name: name,
-                    sex: sex,
-                    address: address,
-                    workTelExt: workTelExt,
-                    homeTelNo: homeTelNo,
-                    emplEmailAddress: emplEmailAddress,
-                    sociaSecurityNumber: sociaSecurityNumber,
-                    DOB: DOB,
-                    position: position,
-                    salary: salary,
-                    dateStarted: dateStarted,
-                    employeeNo: '2018' + (count + 1)
+                var data;
+                if (count > 0) {
+                    var reg = /2018(\d*)/;
+                    var num = parseInt(reg.exec(result[0].employeeNo)[1]);
+                    data = {
+                        name: name,
+                        sex: sex,
+                        address: address,
+                        workTelExt: workTelExt,
+                        homeTelNo: homeTelNo,
+                        emplEmailAddress: emplEmailAddress,
+                        sociaSecurityNumber: sociaSecurityNumber,
+                        DOB: DOB,
+                        position: position,
+                        salary: salary,
+                        dateStarted: dateStarted,
+                        employeeNo: '2018' + (num + 1)
+                    }
+                } else {
+                    data = {
+                        name: name,
+                        sex: sex,
+                        address: address,
+                        workTelExt: workTelExt,
+                        homeTelNo: homeTelNo,
+                        emplEmailAddress: emplEmailAddress,
+                        sociaSecurityNumber: sociaSecurityNumber,
+                        DOB: DOB,
+                        position: position,
+                        salary: salary,
+                        dateStarted: dateStarted,
+                        employeeNo: '2018' + (count + 1)
+                    }
                 }
                 db.employee_add(client, data, function(result) {
                     responseData.code = 200;
@@ -136,6 +156,36 @@ router.post('/employee/employeeNo_search', function(req, res, next) {
                     responseData.code = 200;
                     responseData.message = '查询成功';
                     return res.json(responseData);
+                } else {
+                    responseData.userInfo = {};
+                    responseData.code = 404;
+                    responseData.message = '无此员工信息记录';
+                    return res.json(responseData);
+                }
+            })
+        } else {
+            responseData.code = 404;
+            responseData.message = '请输入员工编号';
+            return res.json(responseData);
+        }
+    })
+    //按修改密码
+router.post('/employee/password', function(req, res, next) {
+        var employeeNo = req.body.employeeNo;
+        var password = req.body.password;
+        if (employeeNo && password) {
+            var client = db.connectServer();
+            db.employee_search(client, employeeNo, function(result) {
+                if (result[0]) {
+                    var data = {
+                        password: password,
+                        employeeNo: employeeNo
+                    };
+                    db.employee_pw_update(client, data, function(result) {
+                        responseData.code = 200;
+                        responseData.message = '修改成功';
+                        return res.json(responseData);
+                    })
                 } else {
                     responseData.userInfo = {};
                     responseData.code = 404;
@@ -233,7 +283,7 @@ router.post('/employee/update', function(req, res, next) {
     //按员工编号删除
 router.delete('/employee/delete', function(req, res, next) {
     var employeeNo = req.body.employeeNo;
-    if (employeeNo) {
+    if (employeeNo && employeeNo != '20181') {
         var client = db.connectServer();
         db.employee_search(client, employeeNo, function(result) {
             if (result[0]) {
@@ -251,7 +301,7 @@ router.delete('/employee/delete', function(req, res, next) {
 
     } else {
         responseData.code = 404;
-        responseData.message = '请输入员工编号';
+        responseData.message = '请输入员工编号或者您不能删除自己的信息';
         return res.json(responseData);
     }
 })
@@ -264,10 +314,21 @@ router.post('/assetCategory/add', function(req, res, next) {
             var client = db.connectServer();
             db.assetCategory_search_all(client, function(result) {
                 count = result.length;
-                var data = {
-                    assetCategoryNo: '66802' + (count + 1),
-                    assetCategoryDescription: assetCategoryDescription
+                var data;
+                if (count > 0) {
+                    var reg = /66802(\d*)/;
+                    var num = parseInt(reg.exec(result[0].assetCategoryNo)[1]);
+                    data = {
+                        assetCategoryNo: '66802' + (num + 1),
+                        assetCategoryDescription: assetCategoryDescription
+                    }
+                } else {
+                    data = {
+                        assetCategoryNo: '66802' + (count + 1),
+                        assetCategoryDescription: assetCategoryDescription
+                    }
                 }
+
                 db.assetCategory_add(client, data, function(result) {
                     responseData.code = 200;
                     responseData.message = '添加成功';
@@ -351,10 +412,21 @@ router.post('/status/add', function(req, res, next) {
             var client = db.connectServer();
             db.status_search_all(client, function(result) {
                 count = result.length;
-                var data = {
-                    statuNo: 'statusNo' + (count + 1),
-                    statusDescription: statusDescription
-                };
+                var data;
+                if (count > 0) {
+                    var reg = /statusNo(\d*)/;
+                    var num = parseInt(reg.exec(result[0].statuNo)[1]);
+                    data = {
+                        statuNo: 'statusNo' + (num + 1),
+                        statusDescription: statusDescription
+                    };
+                } else {
+                    data = {
+                        statuNo: 'statusNo' + (count + 1),
+                        statusDescription: statusDescription
+                    };
+                }
+
                 db.status_add(client, data, function(result) {
                     responseData.code = 200;
                     responseData.message = '添加成功';
@@ -408,7 +480,7 @@ router.post('/status/searchAll', function(req, res, next) {
     })
     //按资产状况编号删除
 router.delete('/status/delete', function(req, res, next) {
-    var statuNo = req.body.statuNo;;
+    var statuNo = req.body.statuNo;
     if (statuNo) {
         var client = db.connectServer();
         db.status_search(client, statuNo, function(result) {
@@ -448,18 +520,37 @@ router.post('/asset/add', function(req, res, next) {
             var client = db.connectServer();
             db.asset_search_all(client, function(result) {
                 count = result.length;
-                var data = {
-                    assetDescription: assetDescription,
-                    serialNo: serialNo,
-                    dateAcquired: dateAcquired,
-                    purchasePrice: purchasePrice,
-                    currentValue: currentValue,
-                    dateSold: dateSold,
-                    nextMaintenanceDate: nextMaintenanceDate,
-                    employeeNo: employeeNo,
-                    assetCategoryNo: assetCategoryNo,
-                    statuNo: statuNo,
-                    assetNo: 'new18' + (count + 1)
+                var data;
+                if (count > 0) {
+                    var reg = /new18(\d*)/;
+                    var num = parseInt(reg.exec(result[0].assetNo)[1]);
+                    data = {
+                        assetDescription: assetDescription,
+                        serialNo: serialNo,
+                        dateAcquired: dateAcquired,
+                        purchasePrice: purchasePrice,
+                        currentValue: currentValue,
+                        dateSold: dateSold,
+                        nextMaintenanceDate: nextMaintenanceDate,
+                        employeeNo: employeeNo,
+                        assetCategoryNo: assetCategoryNo,
+                        statuNo: statuNo,
+                        assetNo: 'new18' + (num + 1)
+                    }
+                } else {
+                    data = {
+                        assetDescription: assetDescription,
+                        serialNo: serialNo,
+                        dateAcquired: dateAcquired,
+                        purchasePrice: purchasePrice,
+                        currentValue: currentValue,
+                        dateSold: dateSold,
+                        nextMaintenanceDate: nextMaintenanceDate,
+                        employeeNo: employeeNo,
+                        assetCategoryNo: assetCategoryNo,
+                        statuNo: statuNo,
+                        assetNo: 'new18' + (count + 1)
+                    }
                 }
                 db.asset_add(client, data, function(result) {
                     responseData.code = 200;
@@ -620,22 +711,44 @@ router.post('/agent/add', function(req, res, next) {
             var client = db.connectServer();
             db.agent_search_all(client, function(result) {
                 count = result.length;
-                var data = {
-                    agentName: agentName,
-                    agentStreet: agentStreet,
-                    agentCity: agentCity,
-                    agentState: agentState,
-                    agentZipCode: agentZipCode,
-                    agentTelNo: agentTelNo,
-                    agentFaxNo: agentFaxNo,
-                    agentEmailAddress: agentEmailAddress,
-                    agentWebAdderss: agentWebAdderss,
-                    contactName: contactName,
-                    contactTelNo: contactTelNo,
-                    contactFaxNo: contactFaxNo,
-                    contactEmailAddress: contactEmailAddress,
-                    agentNo: 'agent8' + (count + 1)
-                };
+                var data;
+                if (count > 0) {
+                    var reg = /agent8(\d*)/;
+                    var num = parseInt(reg.exec(result[0].agentNo)[1]);
+                    data = {
+                        agentName: agentName,
+                        agentStreet: agentStreet,
+                        agentCity: agentCity,
+                        agentState: agentState,
+                        agentZipCode: agentZipCode,
+                        agentTelNo: agentTelNo,
+                        agentFaxNo: agentFaxNo,
+                        agentEmailAddress: agentEmailAddress,
+                        agentWebAdderss: agentWebAdderss,
+                        contactName: contactName,
+                        contactTelNo: contactTelNo,
+                        contactFaxNo: contactFaxNo,
+                        contactEmailAddress: contactEmailAddress,
+                        agentNo: 'agent8' + (num + 1)
+                    };
+                } else {
+                    data = {
+                        agentName: agentName,
+                        agentStreet: agentStreet,
+                        agentCity: agentCity,
+                        agentState: agentState,
+                        agentZipCode: agentZipCode,
+                        agentTelNo: agentTelNo,
+                        agentFaxNo: agentFaxNo,
+                        agentEmailAddress: agentEmailAddress,
+                        agentWebAdderss: agentWebAdderss,
+                        contactName: contactName,
+                        contactTelNo: contactTelNo,
+                        contactFaxNo: contactFaxNo,
+                        contactEmailAddress: contactEmailAddress,
+                        agentNo: 'agent8' + (count + 1)
+                    };
+                }
                 db.agent_add(client, data, function(result) {
                     responseData.code = 200;
                     responseData.message = '添加成功';
@@ -770,15 +883,31 @@ router.post('/maintenance/add', function(req, res, next) {
             var client = db.connectServer();
             db.maintenance_search_all(client, function(result) {
                 count = result.length;
-                var data = {
-                    maintenanceDate: maintenanceDate,
-                    maintenanceDescription: maintenanceDescription,
-                    maintenanceCost: maintenanceCost,
-                    assetNo: assetNo,
-                    employeeNo: employeeNo,
-                    agentNo: agentNo,
-                    maintenanceNo: 'nan18' + (count + 1)
-                };
+                var data;
+                if (count > 0) {
+                    var reg = /nan18(\d*)/;
+                    var num = parseInt(reg.exec(result[0].maintenanceNo)[1]);
+                    data = {
+                        maintenanceDate: maintenanceDate,
+                        maintenanceDescription: maintenanceDescription,
+                        maintenanceCost: maintenanceCost,
+                        assetNo: assetNo,
+                        employeeNo: employeeNo,
+                        agentNo: agentNo,
+                        maintenanceNo: 'nan18' + (num + 1)
+                    };
+                } else {
+                    data = {
+                        maintenanceDate: maintenanceDate,
+                        maintenanceDescription: maintenanceDescription,
+                        maintenanceCost: maintenanceCost,
+                        assetNo: assetNo,
+                        employeeNo: employeeNo,
+                        agentNo: agentNo,
+                        maintenanceNo: 'nan18' + (count + 1)
+                    };
+                }
+
                 db.maintenance_add(client, data, function(result) {
                     responseData.code = 200;
                     responseData.message = '添加成功';
@@ -887,13 +1016,27 @@ router.post('/valuation/add', function(req, res, next) {
                 } else {
                     db.valuation_search_all(client, function(result) {
                         count = result.length;
-                        var data = {
-                            valuationDate: valuationDate,
-                            valuationPrice: valuationPrice,
-                            assetNo: assetNo,
-                            employeeNo: employeeNo,
-                            valuationNo: 'NO0' + (count + 1)
-                        };
+                        var data;
+                        if (count > 0) {
+                            var reg = /NO0(\d*)/;
+                            var num = parseInt(reg.exec(result[0].valuationNo)[1]);
+                            data = {
+                                valuationDate: valuationDate,
+                                valuationPrice: valuationPrice,
+                                assetNo: assetNo,
+                                employeeNo: employeeNo,
+                                valuationNo: 'NO0' + (count + 1)
+                            };
+                        } else {
+                            data = {
+                                valuationDate: valuationDate,
+                                valuationPrice: valuationPrice,
+                                assetNo: assetNo,
+                                employeeNo: employeeNo,
+                                valuationNo: 'NO0' + (count + 1)
+                            };
+                        }
+
                         db.valuation_add(client, data, function(result) {
                             responseData.code = 200;
                             responseData.message = '添加成功';
