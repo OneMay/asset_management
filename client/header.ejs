@@ -15,13 +15,12 @@
 </head>
 
 <body>
-
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;">
+        <span id="EmployeeNO"><%= employeeNo %></span>
+        <span id="name"><%= userName %></span>
+        <span id="code"><%= code %></span>
+    </div>
     <div class="nav">
-        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;">
-            <span id="EmployeeNO"><%= employeeNo %></span>
-            <span id="name"><%= userName %></span>
-            <span id="code"><%= code %></span>
-        </div>
         <ul>
             <% if (code> 50) { %>
                 <li>
@@ -47,16 +46,15 @@
                 </li>
                 <% } else { %>
 
-                    <h3 class="am-icon-users 5"><em></em> <a href="#">个人信息</a></h3>
-                    <ul id="5">
-                        <li><a href="/user/listOne">个人信息</a></li>
-                        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'><a href="/user/pay">工资发放历史</a></a>
+                    <ul>
+                        <li><a class="peoplemsg">个人信息</a></li>
+                        <li><a class="myasset">名下资产</a></a>
                     </ul>
 
                     <% } %>
 
                         <li>
-                            <a href="">退出</a>
+                            <a id="logout">退出</a>
                         </li>
         </ul>
     </div>

@@ -28,7 +28,7 @@ console.log('started on http://localhost:' + port);
 //         position: '技术总监',
 //         salary: '100000',
 //         dateStarted: '2018-01-11',
-//         employeeNo: '2018' + (count + 1)
+//         employeeNo: '20181'
 //     }
 //     db.employee_add(client, data, function(result) {
 

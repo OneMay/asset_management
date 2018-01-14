@@ -49,15 +49,15 @@ $(function() {
                 assetCategoryNo: assetCategoryNo,
             },
             success: function(assetCategory) {
-                if (asserCategory.code == 200) {
+                if (assetCategory.code == 200) {
                     var tr = "<thead><tr>" +
                         "<td>类别编号</td>" +
-                        "<td>类别描述</td>"
-                    "</tr></thead>" +
-                    "<tr><td>" + assetCategory.assetCategory.assetCategoryNo + "</td><td>" + assetCategory.assetCategory.assetCategoryDescription + "</td></tr>"
-                    $('.lookup').find('table').append(tr);
+                        "<td>类别描述</td>" +
+                        "</tr></thead>" +
+                        "<tr><td>" + assetCategory.assetCategory.assetCategoryNo + "</td><td>" + assetCategory.assetCategory.assetCategoryDescription + "</td></tr>"
+                    $('.lookup').find('table').html(tr);
                 } else {
-                    alert(assetCategory.message)
+                    $('.lookup').find('table').html(assetCategory.message)
                 }
             },
             error: function() {
@@ -76,7 +76,7 @@ $(function() {
                     "<td>类别编号</td>" +
                     "<td>类别描述</td>"
                 "</tr></thead>"
-                $('.lookup').find('table').append(thead);
+                $('.lookup').find('table').html(thead);
                 for (var i = 0; i < assetCategory.assetCategory.length; i++) {
                     var tr = "<tr><td>" + assetCategory.assetCategory[i].assetCategoryNo + "</td><td>" + assetCategory.assetCategory[i].assetCategoryDescription + "</td></tr>"
                     $('.lookup').find('table').append(tr);
@@ -87,8 +87,4 @@ $(function() {
             }
         })
     })
-
-    $("#lookupAll").click(function() {
-        $(this).attr("disabled", "disabled");
-    });
 })

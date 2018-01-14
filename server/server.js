@@ -61,9 +61,11 @@ function name(req, res) {
     }
 }
 app.get("/", function(req, res) {
-    console.log(req.session.user)
-    if (req.session.user && req.session.user.code) {
+    if (req.session.user && req.session.user.code > 50) {
         res.redirect('/Assetmsg');
+    }
+    if (req.session.user && req.session.user.code <= 50) {
+        res.redirect('/employeeHome');
     }
     res.render("login", {
         title: '欢迎进入资产管理系统',
@@ -131,6 +133,15 @@ app.get("/Category", function(req, res) {
     name(req, res)
     res.render("Category", {
         title: '分类管理',
+        userName: userName,
+        code: code,
+        employeeNo: employeeNo
+    });
+});
+app.get("/employeeHome", function(req, res) {
+    name(req, res)
+    res.render("employeeHome", {
+        title: '个人信息',
         userName: userName,
         code: code,
         employeeNo: employeeNo

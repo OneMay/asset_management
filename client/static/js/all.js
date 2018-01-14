@@ -13,4 +13,15 @@ window.onload = function() {
             div[this.index].style.display = 'block'; //div显示 this.index是当前div 即div[0]之类的
         };
     };
+
+    $('#logout').click(function() {
+        $.ajax({
+            type: "get",
+            url: "/api/user/logout",
+            success: function(userInfo) {
+                window.location.reload();
+                alert(userInfo.message);
+            }
+        })
+    })
 };
