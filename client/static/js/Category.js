@@ -45,7 +45,11 @@ $(function() {
                 assetCategoryNo: assetCategoryNo,
             },
             success: function(assetCategory) {
-                var tr = "<tr><td>" + assetCategory.assetCategory.assetCategoryNo + "</td><td>" + assetCategory.assetCategory.assetCategoryDescription + "</td></tr>"
+                var tr = "<thead><tr>" +
+                    "<td>类别编号</td>" +
+                    "<td>类别描述</td>"
+                "</tr></thead>" +
+                "<tr><td>" + assetCategory.assetCategory.assetCategoryNo + "</td><td>" + assetCategory.assetCategory.assetCategoryDescription + "</td></tr>"
                 $('.lookup').find('table').append(tr);
             },
             error: function() {

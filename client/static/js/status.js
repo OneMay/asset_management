@@ -72,6 +72,9 @@ $(function() {
             dataType: 'json',
             data: {},
             success: function(status) {
+                if (document.getElementsByTagName('table')[0].childNodes) {
+                    $('.lookup').find('table').html('');
+                }
                 if (status.code == 200) {
                     var thead = " <thead><tr>" +
                         "<td>状态编号</td>" +

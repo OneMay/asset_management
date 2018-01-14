@@ -171,6 +171,9 @@ $(function() {
                 maintenanceNo: maintenanceNo,
             },
             success: function(maintenance) {
+                if (document.getElementsByTagName('table')[0].childNodes) {
+                    $('.lookup').find('table').html('');
+                }
                 if (maintenance.code == 200) {
                     var tr = " <thead><tr>" +
                         "<td>维护编号</td>" +

@@ -407,6 +407,9 @@ body {
 }
 
 a {
+    display: block;
+    width: 100%;
+    height: 50px;
     color: #666
 }
 

@@ -188,6 +188,9 @@ $(function() {
                 assetNo: assetNo,
             },
             success: function(asset) {
+                if (document.getElementsByTagName('table')[0].childNodes) {
+                    $('.lookup').find('table').html('');
+                }
                 if (asset.code == 200) {
                     var tr = "<thead><tr>" +
                         "<td> 资产编号 </td>" +
@@ -217,7 +220,7 @@ $(function() {
                         "</tr>"
                     $('.lookup').find('table').append(tr)
                 } else {
-                    $('.lookup').find('table').append()
+                    $('.lookup').find('table').html(asset.message)
                 }
             },
             error: function() {
@@ -250,7 +253,7 @@ $(function() {
                         "<td>类别编号</td>" +
                         "<td>状态编号</td>" +
                         "</tr></thead>"
-                    $('.lookup').find('table').append(thead)
+                    $('.lookup').find('table').html(thead)
                     for (var i = 0; i < asset.asset.length; i++) {
                         var tr = "<tr>" +
                             "<td title=" + asset.asset[i].assetNo + ">" + asset.asset[i].assetNo + "</td>" +
@@ -268,7 +271,7 @@ $(function() {
                         $('.lookup').find('table').append(tr)
                     }
                 } else {
-                    $('.lookup').find('table').append()
+                    $('.lookup').find('table').html(asset.message)
                 }
             },
             error: function() {
@@ -297,7 +300,7 @@ $(function() {
                         "<td>类别编号</td>" +
                         "<td>状态编号</td>" +
                         "</tr></thead>"
-                    $('.lookup').find('table').append(thead)
+                    $('.lookup').find('table').html(thead)
                     for (var i = 0; i < asset.asset.length; i++) {
                         var tr = "<tr>" +
                             "<td title=" + asset.asset[i].assetNo + ">" + asset.asset[i].assetNo + "</td>" +
@@ -315,7 +318,7 @@ $(function() {
                         $('.lookup').find('table').append(tr)
                     }
                 } else {
-                    $('.lookup').find('table').append()
+                    $('.lookup').find('table').html(asset.message)
                 }
             },
             error: function() {
@@ -324,7 +327,4 @@ $(function() {
         })
     })
 
-    $("#lookupAll").click(function() {
-        $(this).attr("disabled", "disabled");
-    });
 })

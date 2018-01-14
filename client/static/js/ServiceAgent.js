@@ -156,8 +156,12 @@ $(function() {
                 agentNo: agentNo,
             },
             success: function(agent) {
+                if (document.getElementsByTagName('table')[0].childNodes) {
+                    $('.lookup').find('table').html('');
+                }
                 if (agent.code == 200) {
                     var tr = "<thead><tr>" +
+                        "<td>代理编号 </td>" +
                         "<td>代理商名 </td>" +
                         "<td>街道</td>" +
                         "<td>城市</td>" +
@@ -173,6 +177,7 @@ $(function() {
                         "<td>联系人邮箱</td>" +
                         "</tr></thead>" +
                         "<tr>" +
+                        "<td title=" + agent.agent.agentNo + ">" + agent.agent.agentNo + "</td>" +
                         "<td title=" + agent.agent.agentName + ">" + agent.agent.agentName + "</td>" +
                         "<td title=" + agent.agent.agentStreet + ">" + agent.agent.agentStreet + "</td>" +
                         "<td title=" + agent.agent.agentCity + ">" + agent.agent.agentCity + "</td>" +
@@ -207,6 +212,7 @@ $(function() {
             success: function(agent) {
                 if (agent.code == 200) {
                     var thead = "<thead><tr>" +
+                        "<td>代理编号 </td>" +
                         "<td>代理商名 </td>" +
                         "<td>街道</td>" +
                         "<td>城市</td>" +
@@ -221,9 +227,10 @@ $(function() {
                         "<td>联系人传真</td>" +
                         "<td>联系人邮箱</td>" +
                         "</tr></thead>"
-                    $('.lookup').find('table').append(thead)
+                    $('.lookup').find('table').html(thead)
                     for (var i = 0; i < agent.agent.length; i++) {
                         var tr = "<tr>" +
+                            "<td title=" + agent.agent[i].agentNo + ">" + agent.agent[i].agentNo + "</td>" +
                             "<td title=" + agent.agent[i].agentName + ">" + agent.agent[i].agentName + "</td>" +
                             "<td title=" + agent.agent[i].agentStreet + ">" + agent.agent[i].agentStreet + "</td>" +
                             "<td title=" + agent.agent[i].agentCity + ">" + agent.agent[i].agentCity + "</td>" +

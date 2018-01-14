@@ -146,6 +146,9 @@ $(function() {
                 employeeNo: employeeNo,
             },
             success: function(userInfo) {
+                if (document.getElementsByTagName('table')[0].childNodes) {
+                    $('.lookup').find('table').html('');
+                }
                 if (userInfo.code == 200) {
                     var tr = "<thead><tr>" +
                         "<td>员工编号 </td>" +
@@ -177,7 +180,7 @@ $(function() {
                         "</tr>"
                     $('.lookup').find('table').append(tr)
                 } else {
-                    $('.lookup').find('table').append()
+                    $('.lookup').find('table').html(userInfo.message);
                 }
             },
             error: function() {
@@ -211,7 +214,7 @@ $(function() {
                         "<td>员工工资</td>" +
                         "<td>入职日期</td>" +
                         "</tr></thead>"
-                    $('.lookup').find('table').append(thead)
+                    $('.lookup').find('table').html(thead)
                     for (var i = 0; i < userInfo.userInfo.length; i++) {
                         var tr = "<tr>" +
                             "<td title=" + userInfo.userInfo[i].employeeNo + ">" + userInfo.userInfo[i].employeeNo + "</td>" +
@@ -260,7 +263,7 @@ $(function() {
                     "<td>员工工资</td>" +
                     "<td>入职日期</td>" +
                     "</tr></thead>"
-                $('.lookup').find('table').append(thead)
+                $('.lookup').find('table').html(thead)
                 for (var i = 0; i < userInfo.userInfo.length; i++) {
                     var tr = "<tr>" +
                         "<td title=" + userInfo.userInfo[i].employeeNo + ">" + userInfo.userInfo[i].employeeNo + "</td>" +

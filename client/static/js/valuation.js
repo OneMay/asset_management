@@ -144,6 +144,9 @@ $(function() {
                 valuationNo: valuationNo,
             },
             success: function(valuation) {
+                if (document.getElementsByTagName('table')[0].childNodes) {
+                    $('.lookup').find('table').html('');
+                }
                 if (valuation.code == 200) {
                     var tr = " <thead><tr>" +
                         "<td>资产编号</td>" +
