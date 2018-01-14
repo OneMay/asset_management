@@ -33,8 +33,12 @@ $(function() {
                 contactFaxNo: contactFaxNo,
                 contactEmailAddress: contactEmailAddress,
             },
-            success: function() {
-                alert("yes")
+            success: function(agent) {
+                if (agent.code == 200) {
+                    alert(agent.message);
+                } else {
+                    alert(agent.message)
+                }
             },
             error: function() {
                 alert("no")
@@ -70,7 +74,7 @@ $(function() {
                     a[12].value = agent.agent.contactEmailAddress;
                 } else {
                     $('.agentBox').css("display", "none");
-                    alert("没有这个代理")
+                    alert(agent.message)
                 }
             },
             error: function() {
@@ -115,8 +119,12 @@ $(function() {
                 contactEmailAddress: contactEmailAddress,
                 agentNo: agentNo
             },
-            success: function() {
-                alert("yes")
+            success: function(agent) {
+                if (agent.code == 200) {
+                    alert(agent.message);
+                } else {
+                    alert(agent.message)
+                }
             },
             error: function() {
                 alert("noq")
@@ -135,9 +143,9 @@ $(function() {
             },
             success: function(agent) {
                 if (agent.code == 200) {
-                    alert("删除成功");
+                    alert(agent.message);
                 } else {
-                    alert("没有这个代理")
+                    alert(agent.message)
                 }
             },
             error: function() {
@@ -194,7 +202,7 @@ $(function() {
                         "</tr>"
                     $('.lookup').find('table').append(tr)
                 } else {
-                    $('.lookup').find('table').append()
+                    $('.lookup').find('table').html(agent.message)
                 }
             },
             error: function() {

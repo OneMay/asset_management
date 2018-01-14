@@ -8,8 +8,12 @@ $(function() {
             data: {
                 assetCategoryDescription: assetCategoryDescription,
             },
-            success: function() {
-                alert("yes")
+            success: function(assetCategory) {
+                if (assetCategory.code == 200) {
+                    alert(assetCategory.message)
+                } else {
+                    alert(assetCategory.message)
+                }
             },
             error: function() {
                 alert("no")
@@ -26,8 +30,8 @@ $(function() {
             data: {
                 assetCategoryNo: assetCategoryNo,
             },
-            success: function() {
-                alert("yes")
+            success: function(assetCategory) {
+                alert(assetCategory.message)
             },
             error: function() {
                 alert("no")
@@ -45,12 +49,16 @@ $(function() {
                 assetCategoryNo: assetCategoryNo,
             },
             success: function(assetCategory) {
-                var tr = "<thead><tr>" +
-                    "<td>类别编号</td>" +
-                    "<td>类别描述</td>"
-                "</tr></thead>" +
-                "<tr><td>" + assetCategory.assetCategory.assetCategoryNo + "</td><td>" + assetCategory.assetCategory.assetCategoryDescription + "</td></tr>"
-                $('.lookup').find('table').append(tr);
+                if (asserCategory.code == 200) {
+                    var tr = "<thead><tr>" +
+                        "<td>类别编号</td>" +
+                        "<td>类别描述</td>"
+                    "</tr></thead>" +
+                    "<tr><td>" + assetCategory.assetCategory.assetCategoryNo + "</td><td>" + assetCategory.assetCategory.assetCategoryDescription + "</td></tr>"
+                    $('.lookup').find('table').append(tr);
+                } else {
+                    alert(assetCategory.message)
+                }
             },
             error: function() {
                 alert("no")

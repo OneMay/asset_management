@@ -125,8 +125,12 @@ $(function() {
                 employeeNo: employeeNo,
                 valuationNo: valuationNo
             },
-            success: function() {
-                alert("yes")
+            success: function(valuation) {
+                if (valuation.code == 200) {
+                    alert(valuation.message)
+                } else {
+                    alert(valuation.message)
+                }
             },
             error: function() {
                 alert("noq")
@@ -163,7 +167,7 @@ $(function() {
                     $('.lookup').find('table').append(tr);
                 } else {
                     $('.valuaBox').css("display", "none");
-                    alert("没有这个代理")
+                    alert(valuation.message)
                 }
             },
             error: function() {

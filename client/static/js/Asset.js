@@ -130,7 +130,7 @@ $(function() {
                     a[9].value = asset.asset.statuNo
                 } else {
                     $('.assetBox').css("display", "none");
-                    alert("没有这个代理")
+                    alert(asset.message)
                 }
             },
             error: function() {
@@ -169,8 +169,12 @@ $(function() {
                 statuNo: statuNo,
                 assetNo: assetNo
             },
-            success: function() {
-                alert("yes")
+            success: function(asset) {
+                if (asset.code == 200) {
+                    alert(asset.message)
+                } else {
+                    alert(asset.message)
+                }
             },
             error: function() {
                 alert("noq")

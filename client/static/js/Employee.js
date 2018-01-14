@@ -29,8 +29,12 @@ $(function() {
                 salary: salary,
                 dateStarted: dateStarted,
             },
-            success: function() {
-                alert("yes")
+            success: function(employee) {
+                if (employee.code == 200) {
+                    alert(employee.message)
+                } else {
+                    alert(employee.message)
+                }
             },
             error: function() {
                 alert("no")
@@ -64,7 +68,7 @@ $(function() {
                     a[10].value = userInfo.userInfo.dateStarted;
                 } else {
                     $('.employeeBox').css("display", "none");
-                    alert("没有这个员工")
+                    alert(userInfo.message)
                 }
             },
             error: function() {
@@ -105,8 +109,12 @@ $(function() {
                 dateStarted: dateStarted,
                 employeeNo: employeeNo
             },
-            success: function() {
-                alert("yes")
+            success: function(employee) {
+                if (employee.code == 200) {
+                    alert(employee.message)
+                } else {
+                    alert(employee.message)
+                }
             },
             error: function() {
                 alert("noq")
@@ -125,9 +133,9 @@ $(function() {
             },
             success: function(employee) {
                 if (employee.code == 200) {
-                    alert("删除成功");
+                    alert(employee.message);
                 } else {
-                    alert("没有这个代理")
+                    alert(employee.message)
                 }
             },
             error: function() {
@@ -233,7 +241,7 @@ $(function() {
                         $('.lookup').find('table').append(tr)
                     }
                 } else {
-                    $('.lookup').find('table').append()
+                    $('.lookup').find('table').html(userInfo.message)
                 }
             },
             error: function() {

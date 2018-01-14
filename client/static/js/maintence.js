@@ -69,8 +69,12 @@ $(function() {
                 employeeNo: employeeNo,
                 agentNo: agentNo,
             },
-            success: function() {
-                alert('yes')
+            success: function(maintenance) {
+                if (maintenance.code == 200) {
+                    alert(maintenance.message)
+                } else {
+                    alert(maintenance.message)
+                }
             },
             error: function() {
                 alert("no")
@@ -89,9 +93,9 @@ $(function() {
             },
             success: function(maintenance) {
                 if (maintenance.code == 200) {
-                    alert('删除成功')
+                    alert(maintenance.message)
                 } else {
-                    alert('删除失败')
+                    alert(maintenance.message)
                 }
             },
             error: function() {
@@ -121,7 +125,7 @@ $(function() {
                     a[5].value = maintenance.maintenance.maintenanceCost;
                 } else {
                     $('.maintenceBox').css("display", "none");
-                    alert("没有这个代理")
+                    alert(maintenance.message)
                 }
             },
             error: function() {
@@ -152,8 +156,12 @@ $(function() {
                 agentNo: agentNo,
                 maintenanceNo: maintenanceNo
             },
-            success: function() {
-                alert("yes")
+            success: function(maintenance) {
+                if (maintenance.code == 200) {
+                    alert(maintenance.message)
+                } else {
+                    alert(maintenance.message)
+                }
             },
             error: function() {
                 alert("noq")
@@ -196,7 +204,7 @@ $(function() {
                     $('.lookup').find('table').append(tr)
                 } else {
                     $('.maintenceBox').css("display", "none");
-                    alert("没有这个代理")
+                    alert(maintenance.message)
                 }
             },
             error: function() {

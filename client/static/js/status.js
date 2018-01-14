@@ -8,8 +8,12 @@ $(function() {
             data: {
                 statusDescription: statusDescription,
             },
-            success: function() {
-                alert("yes")
+            success: function(status) {
+                if (status.code == 200) {
+                    alert(status.message)
+                } else {
+                    alert(status.message)
+                }
             },
             error: function() {
                 alert('no')
@@ -27,8 +31,12 @@ $(function() {
             data: {
                 statuNo: statuNo,
             },
-            success: function() {
-                alert("yes")
+            success: function(status) {
+                if (status.code == 200) {
+                    alert(status.message)
+                } else {
+                    alert(status.message)
+                }
             },
             error: function() {
                 alert("no")
@@ -56,7 +64,7 @@ $(function() {
                         "<td title=" + status.status.statusDescription + ">" + status.status.statusDescription + "</td></tr>"
                     $('.lookup').find('table').append(tr);
                 } else {
-                    alert("没有这个维护")
+                    alert(status.message)
                 }
             },
             error: function() {
@@ -89,7 +97,7 @@ $(function() {
                         $('.lookup').find('table').append(tr);
                     }
                 } else {
-                    alert("没有这个维护")
+                    alert(status.message)
                 }
             },
             error: function() {
@@ -98,8 +106,4 @@ $(function() {
         })
     });
 
-
-    $("#lookupAll").click(function() {
-        $(this).attr("disabled", "disabled");
-    });
 })
