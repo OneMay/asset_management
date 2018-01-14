@@ -47,6 +47,19 @@ app.use(function(req, res, next) {
     // }
     return next();
 })
+var userName = '',
+    code = 0,
+    employeeNo = '';
+
+function name(req, res) {
+    if (req.session.user && req.session.user.code) {
+        userName = req.session.user.name;
+        employeeNo = req.session.user.employeeNo
+        code = req.session.user.code
+    } else {
+        res.redirect('/');
+    }
+}
 app.get("/", function(req, res) {
     res.render("index");
 });
