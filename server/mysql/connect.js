@@ -219,6 +219,16 @@ module.exports = {
             callback(result);
         })
     },
+    //按员工编号查询资产
+    employeeNo_asset_search(client, data, callback) {
+        var sql = `select *
+                  from AM_ASSET
+                  where employeeNo = ?`;
+        client.query(sql, [data], (err, result) => {
+            if (err) throw err
+            callback(result);
+        })
+    },
     //按资产名称查询
     assetDescription_search(client, data, callback) {
         var sql = `select *

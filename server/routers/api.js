@@ -105,7 +105,7 @@ router.post('/user/login', function(req, res, next) {
                 responseData.message = '登陆成功';
                 var userInfoL = {
                     userInfo: {
-                        _id: result[0].employeeNo,
+                        employeeNo: result[0].employeeNo,
                         name: result[0].name,
                         code: result[0].code
                     }
@@ -128,6 +128,49 @@ router.post('/user/login', function(req, res, next) {
                 return res.json(responseData);
             }
         })
+    }
+})
+
+//员工个人信息查询
+router.post('/employee/one', function(req, res, next) {
+    var employeeNo = req.body.employeeNo;
+    if (employeeNo) {
+        var client = db.connectServer();
+        db.employee_search(client, employeeNo, function(result) {
+            if (result[0]) {
+                responseData.employee = result[0];
+                responseData.code = 200;
+                responseData.message = '查询成功';
+                return res.json(responseData);
+            } else {
+                responseData.employee = {};
+                responseData.code = 404;
+                responseData.message = '无此员工信息';
+                return res.json(responseData);
+            }
+        })
+    } else {
+        responseData.code = 404;
+        responseData.message = '请输入员工编号';
+        return res.json(responseData);
+    }
+})
+
+//按员工编号查询员工个人资产employeeNo_asset_search
+router.post('/employee/assetSearch', function(req, res, next) {
+    var employeeNo = req.body.employeeNo;
+    if (employeeNo) {
+        var client = db.connectServer();
+        db.employeeNo_asset_search(client, employeeNo, function(result) {
+            responseData.asset = result;
+            responseData.code = 200;
+            responseData.message = '查询成功';
+            return res.json(responseData);
+        })
+    } else {
+        responseData.code = 404;
+        responseData.message = '请输入员工编号';
+        return res.json(responseData);
     }
 })
 module.exports = router;

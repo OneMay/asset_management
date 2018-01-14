@@ -408,7 +408,11 @@ router.post('/status/searchAll', function(req, res, next) {
     })
     //按资产状况编号删除
 router.delete('/status/delete', function(req, res, next) {
+<<<<<<< HEAD
     var statuNo = req.body.statuNo;;
+=======
+    var statuNo = req.body.statuNo;
+>>>>>>> 817967278b5700b39e291183efb1bd0e13ecc752
     if (statuNo) {
         var client = db.connectServer();
         db.status_search(client, statuNo, function(result) {
@@ -577,7 +581,11 @@ router.post('/asset/update', function(req, res, next) {
         }
     })
     //按资产编号删除
+<<<<<<< HEAD
 router.delete('/asset/delete', function(req, res, next) {
+=======
+router.delete('/asset/dalete', function(req, res, next) {
+>>>>>>> 817967278b5700b39e291183efb1bd0e13ecc752
         var assetNo = req.body.assetNo;
         if (assetNo) {
             var client = db.connectServer();
